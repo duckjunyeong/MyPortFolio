@@ -1,4 +1,4 @@
-import react from "react";
+import react, { useCallback } from "react";
 import myPoto from "../../image/myPoto.jpg";
 import {
   IntroducingWrapper,
@@ -7,7 +7,19 @@ import {
   NavWrapper,
 } from "./styles";
 
-const Main = () => {
+const Main = ({ profileRef, BlogRef, YoutubeRef, ProjectsRef }) => {
+  const moveToProfilePage = useCallback(
+    (ref) => {
+      if (ref) {
+        const offsetTop = ref.current.offsetTop;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
+      }
+    },
+    [profileRef]
+  );
   return (
     <MainWrapper>
       <IntroducingWrapper>
@@ -22,19 +34,40 @@ const Main = () => {
       <NavWrapper>
         <ul>
           <li>
-            <a href="profile">Profile</a>
+            <button
+              onClick={() => {
+                moveToProfilePage(profileRef);
+              }}
+            >
+              Profile
+            </button>
           </li>
           <li>
-            <a href="">Blog</a>
+            <button
+              onClick={() => {
+                moveToProfilePage(BlogRef);
+              }}
+            >
+              Blog
+            </button>
           </li>
           <li>
-            <a href="">Youtube</a>
+            <button
+              onClick={() => {
+                moveToProfilePage(YoutubeRef);
+              }}
+            >
+              Youtube
+            </button>
           </li>
           <li>
-            <a href="">Projects</a>
-          </li>
-          <li>
-            <a href="">Github</a>
+            <button
+              onClick={() => {
+                moveToProfilePage(ProjectsRef);
+              }}
+            >
+              Projects
+            </button>
           </li>
         </ul>
       </NavWrapper>

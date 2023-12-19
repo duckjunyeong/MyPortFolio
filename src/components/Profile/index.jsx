@@ -1,10 +1,13 @@
 import React from "react";
+import { PageHeaderWrapper } from "./styles.jsx";
 
-const Profile = () => {
+const Profile = ({ profileRef }) => {
   return (
-    <h2>
-      <a id="profile">Profile</a>
-    </h2>
+    <PageHeaderWrapper ref={profileRef} r>
+      <div>
+        <div>Profile</div>
+      </div>
+    </PageHeaderWrapper>
   );
 };
 
